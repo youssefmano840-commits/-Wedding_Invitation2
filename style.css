@@ -1,0 +1,545 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #f4eee3;
+  color: #62513d;
+  font-family: 'Cormorant Garamond', serif;
+  overflow-x: hidden;
+}
+
+/* OPENING SCREEN */
+
+.opening {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background:
+    radial-gradient(ellipse at center, #fffdf8, #e9dfce);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 1.2s, visibility 1.2s;
+}
+
+.opening.closed {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.intro-text {
+  text-align: center;
+  margin-bottom: 55px;
+  animation: fadeIn 2s;
+}
+
+.intro-text p {
+  font-size: 11px;
+  letter-spacing: 5px;
+  color: #a58a60;
+}
+
+.intro-text h2 {
+  font-family: 'Great Vibes';
+  font-size: 43px;
+  font-weight: 400;
+  margin-top: 12px;
+}
+
+/* ENVELOPE */
+
+.envelope {
+  width: 310px;
+  height: 205px;
+  position: relative;
+  perspective: 1000px;
+  filter: drop-shadow(0 20px 25px #65502b25);
+  animation: floating 3s infinite ease-in-out;
+}
+
+.envelope-back {
+  position: absolute;
+  inset: 0;
+  background: #c9b18b;
+  border: 1px solid #a88c5d;
+}
+
+.letter {
+  position: absolute;
+  width: 88%;
+  height: 185px;
+  left: 6%;
+  bottom: 8px;
+  background: #fffdf7;
+  text-align: center;
+  padding-top: 17px;
+  z-index: 2;
+  transition: 1.5s ease;
+}
+
+.letter p {
+  font-size: 9px;
+  letter-spacing: 3px;
+}
+
+.letter h2 {
+  font-family: 'Great Vibes';
+  font-size: 35px;
+  font-weight: 400;
+  color: #a88755;
+}
+
+.letter span {
+  font-size: 18px;
+}
+
+.letter small {
+  display: block;
+  margin-top: 8px;
+  letter-spacing: 3px;
+}
+
+.envelope-front {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  background: #d8c4a2;
+  clip-path: polygon(0 0, 50% 58%, 100% 0, 100% 100%, 0 100%);
+}
+
+.flap {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  z-index: 5;
+  background: #c2a77d;
+  clip-path: polygon(0 0, 100% 0, 50% 60%);
+  transform-origin: top;
+  transition: transform 1s ease;
+}
+
+.wax {
+  position: absolute;
+  z-index: 6;
+  top: 48%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 25%, #d9bd83, #987342);
+  color: #fff4db;
+  display: grid;
+  place-items: center;
+  font-family: 'Great Vibes';
+  font-size: 30px;
+  box-shadow: 0 3px 8px #59421d50;
+  transition: .5s;
+}
+
+/* OPEN ANIMATION */
+
+.envelope.open .flap {
+  transform: rotateX(180deg);
+  z-index: 1;
+}
+
+.envelope.open .wax {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(1.8);
+}
+
+.envelope.open .letter {
+  transform: translateY(-180px);
+}
+
+.open-btn {
+  margin-top: 55px;
+  background: transparent;
+  border: 1px solid #ad8d5e;
+  padding: 15px 30px;
+  color: #806745;
+  letter-spacing: 3px;
+  cursor: pointer;
+  transition: .4s;
+}
+
+.open-btn:hover {
+  background: #a88755;
+  color: white;
+}
+
+.bottom-note {
+  position: absolute;
+  bottom: 35px;
+  font-size: 10px;
+  letter-spacing: 4px;
+  color: #9d8768;
+}
+
+/* WEBSITE */
+
+.website {
+  opacity: 0;
+  visibility: hidden;
+  transition: 1.5s;
+}
+
+.website.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #faf8f2ed;
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  padding: 22px 10px;
+  border-bottom: 1px solid #e4d7c2;
+}
+
+nav a {
+  color: #78664b;
+  text-decoration: none;
+  font-size: 13px;
+  letter-spacing: 2px;
+}
+
+.logo {
+  font-family: 'Great Vibes';
+  font-size: 28px;
+  color: #a88755;
+  margin-right: 25px;
+}
+
+/* HERO */
+
+.hero {
+  min-height: 850px;
+  padding: 100px 20px;
+  text-align: center;
+  background: #f7f3eb;
+}
+
+.gold {
+  color: #ac8955;
+  letter-spacing: 5px;
+  font-size: 12px;
+}
+
+.hero h1 {
+  font-family: 'Great Vibes';
+  font-size: clamp(65px, 10vw, 105px);
+  font-weight: 400;
+  margin: 25px 0;
+  color: #9e8054;
+}
+
+.hero h1 span {
+  color: #c5a879;
+}
+
+.hero-date {
+  letter-spacing: 5px;
+}
+
+.hero-photo {
+  max-width: 400px;
+  height: 430px;
+  margin: 40px auto;
+  padding: 8px;
+  border: 1px solid #bba17a;
+}
+
+.hero-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.welcome {
+  line-height: 1.8;
+  font-size: 21px;
+}
+
+.scroll {
+  display: inline-block;
+  margin-top: 35px;
+  color: #92754d;
+  text-decoration: none;
+  letter-spacing: 3px;
+}
+
+/* SECTIONS */
+
+.section {
+  padding: 110px 8%;
+  text-align: center;
+}
+
+.section h2 {
+  font-family: 'Great Vibes';
+  font-weight: 400;
+  font-size: 60px;
+  margin: 20px 0 35px;
+  color: #a88755;
+}
+
+.story {
+  background: #eee7da;
+}
+
+.story > p:not(.gold) {
+  max-width: 570px;
+  margin: auto;
+  line-height: 2;
+  font-size: 21px;
+}
+
+.heart {
+  font-size: 45px;
+  color: #b99b6a;
+  margin-top: 30px;
+  animation: heartbeat 2s infinite;
+}
+
+/* COUPLE */
+
+.couple-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 35px;
+  max-width: 800px;
+  margin: auto;
+}
+
+.couple-grid img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  padding: 7px;
+  border: 1px solid #c3a578;
+}
+
+.couple-grid h3 {
+  font-family: 'Great Vibes';
+  font-size: 42px;
+  color: #a88755;
+  margin-top: 20px;
+}
+
+/* QUOTE */
+
+.quote {
+  background: #a48a66;
+  color: white;
+  padding: 90px 15px;
+  text-align: center;
+  font-family: 'Great Vibes';
+  font-size: 50px;
+}
+
+/* DETAILS */
+
+.details {
+  background: #f7f3eb;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.detail-grid div {
+  border: 1px solid #d7c5a6;
+  padding: 35px 12px;
+  transition: .5s;
+}
+
+.detail-grid div:hover {
+  transform: translateY(-10px);
+  background: #eee7da;
+}
+
+.detail-grid span {
+  font-size: 35px;
+  color: #b18e59;
+}
+
+.detail-grid h3 {
+  margin: 15px;
+  letter-spacing: 3px;
+}
+
+/* COUNTDOWN */
+
+.countdown {
+  background: #eee7da;
+}
+
+.timer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.timer div {
+  display: flex;
+  flex-direction: column;
+}
+
+.timer strong {
+  font-size: 55px;
+  font-weight: 400;
+  color: #a88755;
+}
+
+.timer small {
+  letter-spacing: 3px;
+}
+
+/* GALLERY */
+
+.photos {
+  max-width: 900px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.photos img {
+
+  height: 330px;
+  object-fit: cover;
+  transition: .6s;
+}
+
+.photos img:hover {
+  transform: scale(1.04);
+}
+
+/* RSVP */
+
+.rsvp {
+  background: #eee7da;
+}
+
+.rsvp a {
+  display: inline-block;
+  margin-top: 30px;
+  border: 1px solid #ad8d5e;
+  padding: 15px 30px;
+  color: #806745;
+  text-decoration: none;
+  letter-spacing: 2px;
+}
+
+/* FOOTER */
+
+footer {
+  background: #514638;
+  color: white;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+footer h2 {
+  font-family: 'Great Vibes';
+  color: #dfc69c;
+  font-size: 50px;
+  font-weight: 400;
+}
+
+footer p {
+  letter-spacing: 4px;
+  font-size: 11px;
+  margin: 15px;
+}
+
+/* EFFECTS */
+
+@keyframes floating {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+@media(max-width: 650px) {
+  nav {
+    gap: 12px;
+    padding: 18px 5px;
+  }
+
+  nav a {
+    font-size: 10px;
+    letter-spacing: 1px;
+  }
+
+  .logo {
+    margin-right: 0;
+    font-size: 22px;
+  }
+
+  .envelope {
+    width: 280px;
+  }
+
+  .couple-grid,
+  .detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section {
+    padding: 75px 20px;
+  }
+
+  .photos img {
+    height: 190px;
+  }
+
+  .hero {
+    min-height: 700px;
+  }
+
+  .hero-photo {
+    height: 330px;
+  }
+
+  .timer {
+    gap: 25px;
+  }
+
+  .timer strong {
+    font-size: 38px;
+  }
+}
